@@ -1,29 +1,53 @@
-import { Link } from 'expo-router';
-import { StyleSheet } from 'react-native';
+import React from "react";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { useRouter } from "expo-router";
 
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
+export default function Modal() {
+  const router = useRouter();
 
-export default function ModalScreen() {
   return (
-    <ThemedView style={styles.container}>
-      <ThemedText type="title">This is a modal</ThemedText>
-      <Link href="/" dismissTo style={styles.link}>
-        <ThemedText type="link">Go to home screen</ThemedText>
-      </Link>
-    </ThemedView>
+    <View style={styles.container}>
+      <Text style={styles.title}>🍽 Food Details</Text>
+
+      <Text style={styles.description}>
+        Delicious food made with love. Fresh ingredients and amazing taste!
+      </Text>
+
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => router.back()}
+      >
+        <Text style={styles.buttonText}>Close</Text>
+      </TouchableOpacity>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
+    padding: 25,
+    justifyContent: "center",
+    backgroundColor: "#fff",
   },
-  link: {
-    marginTop: 15,
-    paddingVertical: 15,
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 15,
+  },
+  description: {
+    fontSize: 16,
+    marginBottom: 20,
+    color: "#555",
+  },
+  button: {
+    backgroundColor: "#ff7f50",
+    padding: 15,
+    borderRadius: 12,
+    alignItems: "center",
+  },
+  buttonText: {
+    color: "#fff",
+    fontWeight: "bold",
   },
 });
